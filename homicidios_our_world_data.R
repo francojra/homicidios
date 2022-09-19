@@ -68,7 +68,8 @@ hom2 <- hom1 %>%
 # Gráficos ---------------------------------------------------------------------------------------------------------------------------------
 
 ggplot(hom1, aes(x = Year, y = por_mor, group = Entity, col = Entity)) +
-  geom_point() +
-  geom_line() +
+  geom_line(size = 1.5) +
   facet_wrap(. ~ Entity, scales = "free") +
-  theme(legend.position = "none")
+  labs(x = "Tempo (anos", y = "Porcentagem de mortes por homicídio") +
+  theme_light() +
+  theme(legend.position = "none") 
