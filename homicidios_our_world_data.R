@@ -29,7 +29,38 @@
 ### países da América Latina. Mais que 7% de mortes em El Salvador foram
 ### por homicídios, mais que 6% na Guatemala e 5% na Venezuela.
 
+# Carregar pacotes -------------------------------------------------------------------------------------------------------------------------
 
+library(tidyverse)
+library(cols4all)
 
+# Carregar dados ---------------------------------------------------------------------------------------------------------------------------
 
+hom <- read.csv("share-of-deaths-homicides.csv")
+view(hom)
+names(hom)
 
+# Mnaipular dados --------------------------------------------------------------------------------------------------------------------------
+
+hom <- hom %>%
+  rename(por_mor = Deaths...Interpersonal.violence...Sex..Both...Age..All.Ages..Percent.) %>%
+  view()
+
+hom <- hom %>%
+  select(por_mor, Entity, Year) %>%
+  view()
+
+hom1 <- hom %>%
+  filter(Entity %in% c("United States", "Canada", "Mexico", "Guatemala",
+                       "Honduras", "Nicaragua", "Colombia", "Venezuela",
+                       "Brazil", "Ecuador", "Paraguay", "Argentina",
+                       "Chile", "Bolivia", "Peru", "Cuba", 
+                       "Dominican Republic")) %>%
+  view()
+
+hom2 <- hom1 %>%
+  group_by(Entity) %>%
+  summarise(media = mean(por_mor),
+            n = n(), sd = sd(por_mor),
+            se = sd/sqrt(n)) %>%
+  view()
