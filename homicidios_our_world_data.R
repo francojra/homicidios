@@ -64,3 +64,11 @@ hom2 <- hom1 %>%
             n = n(), sd = sd(por_mor),
             se = sd/sqrt(n)) %>%
   view()
+
+# Gráficos ---------------------------------------------------------------------------------------------------------------------------------
+
+ggplot(hom1, aes(x = Year, y = por_mor, group = Entity, col = Entity)) +
+  geom_point() +
+  geom_line() +
+  facet_wrap(. ~ Entity, scales = "free") +
+  theme(legend.position = "none")
