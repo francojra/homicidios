@@ -40,7 +40,7 @@ hom <- read.csv("share-of-deaths-homicides.csv")
 view(hom)
 names(hom)
 
-# Mnaipular dados --------------------------------------------------------------------------------------------------------------------------
+# Manipular dados --------------------------------------------------------------------------------------------------------------------------
 
 hom <- hom %>%
   rename(por_mor = Deaths...Interpersonal.violence...Sex..Both...Age..All.Ages..Percent.) %>%
